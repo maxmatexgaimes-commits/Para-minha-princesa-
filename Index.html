@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Para Andrelly 💕</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #fff0f6, #efe6ff);
+  color: #5a2d3c;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* === CARTA FECHADA (INÍCIO) === */
+#inicio {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #ffe6f0, #f2e9ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.carta {
+  background: #fff;
+  padding: 40px 35px;
+  border-radius: 30px;
+  max-width: 320px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  animation: pulse 1.6s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* === SITE ESCONDIDO === */
+#site {
+  display: none;
+}
+
+/* === SEÇÕES === */
+section {
+  background: rgba(255,255,255,0.96);
+  margin: 25px;
+  padding: 35px;
+  border-radius: 32px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+  animation: fade 1.4s ease;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === FLORES === */
+.fall {
+  position: fixed;
+  top: -10%;
+  font-size: 20px;
+  animation: fall linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(360deg); }
+}
+
+/* === GALERIA === */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+  gap: 16px;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+/* === MODAL FOTO === */
+#fotoModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#fotoModal div {
+  background: #fff;
+  padding: 25px;
+  border-radius: 22px;
+  max-width: 280px;
+  font-size: 0.95em;
+}
+
+button {
+  background: #e0568c;
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 30px;
+  font-size: 1em;
+}
+</style>
+</head>
+
+<body>
+
+<!-- === TELA INICIAL (CARTA FECHADA) === -->
+<div id="inicio">
+  <div class="carta">
+    <h2>💌 Para você</h2>
+    <p>
+      Isso é uma pequena cartinha.<br>
+      Abra com carinho.
+    </p>
+    <button onclick="abrirCarta()">Abrir a carta 💖</button>
+  </div>
+</div>
+
+<!-- === SITE (COMEÇA ESCONDIDO) === -->
+<div id="site">
+
+<section>
+  <h1>Max ❤️ Andrelly</h1>
+  <p>Desde que você chegou, tudo ficou mais bonito.</p>
+</section>
+
+<section>
+  <h2>🎵 Nossa música</h2>
+  <iframe width="300" height="170"
+    src="https://www.youtube.com/embed/JIfN8QVmZrM?autoplay=1&mute=1"
+    allow="autoplay"
+    style="border-radius:16px;">
+  </iframe>
+</section>
+
+<section>
+  <h2>📸 Nossos momentos</h2>
+  <div class="gallery">
+    <img src="foto1.jpg" onclick="foto('Meu lugar favorito sempre foi você 💕')">
+    <img src="foto2.jpg" onclick="foto('Com você tudo é mais leve 🌸')">
+    <img src="foto3.jpg" onclick="foto('Nosso amor é simples e real ✨')">
+    <img src="foto4.jpg" onclick="foto('Você é meu sorriso diário 💖')">
+    <img src="foto5.jpg" onclick="foto('Te escolheria sempre 💌')">
+    <img src="foto6.jpg" onclick="foto('Meu coração encontrou casa 💗')">
+    <img src="foto7.jpg" onclick="foto('Momentos simples, amor verdadeiro 🌷')">
+    <img src="foto8.jpg" onclick="foto('Você é meu lar 🏡')">
+    <img src="foto9.jpg" onclick="foto('Amar você é fácil 💞')">
+    <img src="foto10.jpg" onclick="foto('Pra sempre nós 💍')">
+  </div>
+</section>
+
+<section>
+  <h2>💖 Pra você</h2>
+  <p>
+    Obrigado por existir.<br>
+    Eu te amo mais do que consigo explicar.
+  </p>
+</section>
+
+</div>
+
+<!-- MODAL FOTO -->
+<div id="fotoModal" onclick="this.style.display='none'">
+  <div id="msg"></div>
+</div>
+
+<script>
+function abrirCarta(){
+  document.getElementById("inicio").style.display = "none";
+  document.getElementById("site").style.display = "block";
+
+  // flores começam só depois de abrir
+  for(let i=0;i<22;i++){
+    let f=document.createElement("div");
+    f.className="fall";
+    f.style.left=Math.random()*100+"vw";
+    f.style.animationDuration=(7+Math.random()*6)+"s";
+    f.innerHTML=Math.random()>0.5?"🌸":"💗";
+    document.body.appendChild(f);
+  }
+}
+
+function foto(texto){
+  document.getElementById("msg").innerHTML="💖<br>"+texto;
+  document.getElementById("fotoModal").style.display="flex";
+}
+</script>
+
+</body>
+</html>
